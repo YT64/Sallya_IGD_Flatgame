@@ -5,47 +5,48 @@ using UnityEngine;
 public class Mouth : MonoBehaviour
 {
     public float speed;
-
+    private bool isMoving;
+    private AudioSource Laugh;
 
     private void Start()
     {
-        //engine = this.gameObject.GetComponent<AudioSource>();
+        Laugh = this.gameObject.GetComponent<AudioSource>();
     }
 
     public void Update()
     {
-        //isDriving = false;
+        isMoving = false;
 
 
         if (Input.GetKey(KeyCode.D))
         {
             this.transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-            //isDriving = true;
+            isMoving = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
             this.transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
-            //isDriving = true;
+            isMoving = true;
         }
         if (Input.GetKey(KeyCode.W))
         {
             this.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
-            //isDriving = true;
+            isMoving = true;
         }
         if (Input.GetKey(KeyCode.S))
         {
             this.transform.position += new Vector3(0, -speed * Time.deltaTime, 0);
-            //isDriving = true;
+            isMoving = true;
         }
 
 
-        //if (isDriving && !engine.isPlaying)
-        //{
-        //    engine.Play();
-        //}
-        //else if (!isDriving && engine.isPlaying)
-        //{
-        //    engine.Stop();
-        //}
+        if (isMoving && !Laugh.isPlaying)
+        {
+            Laugh.Play();
+        }
+        else if (!isMoving && Laugh.isPlaying)
+        {
+            Laugh.Stop();
+        }
     }
 }
